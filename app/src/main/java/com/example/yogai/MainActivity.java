@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
     // Get the image capture
     private ImageCapture imageCapture;
 
+    // Get the pose from onCreate()
+    private String pose;
+
     // Get the main thread
     ExecutorService thread = Executors.newFixedThreadPool(10);
 
@@ -123,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        pose = getIntent().getStringExtra("POSE: ");
         // Define the processCameraProvider
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
         // When the camera provider resolves, it will bind the hardware camera to the preview

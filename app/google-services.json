@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "827754040385",
+    "firebase_url": "https://hackwestern-e0dcc.firebaseio.com",
+    "project_id": "hackwestern-e0dcc",
+    "storage_bucket": "hackwestern-e0dcc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:827754040385:android:c4b5bb87e02fbbe9d9cac0",
+        "android_client_info": {
+          "package_name": "com.example.yogai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "827754040385-jqudfa26371gv303dvcnuc2ic94bncnc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF5np5sfhGl-q_kneKw4sQrbjHbxRo5iU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "827754040385-jqudfa26371gv303dvcnuc2ic94bncnc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,6 +11,7 @@ import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.pose.Pose;
 import com.google.mlkit.vision.pose.PoseDetection;
 import com.google.mlkit.vision.pose.PoseDetector;
+import com.google.mlkit.vision.pose.accurate.AccuratePoseDetectorOptions;
 import com.google.mlkit.vision.pose.defaults.PoseDetectorOptions;
 
 public class PoseClassification {
@@ -18,9 +19,10 @@ public class PoseClassification {
     private PoseDetector poseDetector;
     // constructor for pose detection
     PoseClassification() {
-        PoseDetectorOptions options =
-                new PoseDetectorOptions.Builder()
-                        .setDetectorMode(PoseDetectorOptions.STREAM_MODE)
+        // Accurate pose detector on static images, when depending on the pose-detection-accurate sdk
+        AccuratePoseDetectorOptions options =
+                new AccuratePoseDetectorOptions.Builder()
+                        .setDetectorMode(AccuratePoseDetectorOptions.SINGLE_IMAGE_MODE)
                         .build();
         poseDetector = PoseDetection.getClient(options);
     }

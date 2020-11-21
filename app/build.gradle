@@ -49,7 +49,8 @@ dependencies {
 
     // ML kit pose detection base sdk
     implementation 'com.google.mlkit:pose-detection:17.0.0'
-
+    // If you want to use the accurate sdk
+    implementation 'com.google.mlkit:pose-detection-accurate:17.0.0'
     // Firebase sdk
     implementation platform('com.google.firebase:firebase-bom:26.1.0')
     implementation 'com.google.firebase:firebase-analytics'

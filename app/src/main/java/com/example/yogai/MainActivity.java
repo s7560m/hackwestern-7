@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Build the camera and select the back lens
         CameraSelector cameraSelector = new CameraSelector.Builder()
-                .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                .requireLensFacing(CameraSelector.LENS_FACING_FRONT)
                 .build();
 
         // Generate the image analysis
@@ -92,16 +92,15 @@ public class MainActivity extends AppCompatActivity {
 
                 poseClassification.getPose(image).addOnSuccessListener(pose -> {
                     List<PoseLandmark> allPoseLandmarks = pose.getAllPoseLandmarks();
-                    for (PoseLandmark individualPose : allPoseLandmarks) {
-                        System.out.println(individualPose.getLandmarkType());
-                    }
-//                    System.out.println("test");
+//                    for (PoseLandmark individualPose : allPoseLandmarks) {
+//                        System.out.println(individualPose.getLandmarkType()); }
+                    Angles angle = new Angles();
+                    System.out.println(angle.leftElbowAngle(pose));
                     imageProxy.close();
                 }).addOnFailureListener(e -> {
-                    System.out.println("FUCK" + e.getMessage() + e.getCause());
+                    System.out.println(e.getMessage() + e.getCause());
                 });
             }
-//            imageProxy.close();
 
         });
 

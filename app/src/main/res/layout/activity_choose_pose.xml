@@ -9,8 +9,9 @@
     <TableLayout
         android:layout_width="409dp"
         android:layout_height="729dp"
+        android:background="#FFFBDC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -26,7 +27,7 @@
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="205dp"
-                    android:layout_height="368dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:onClick="vrikshasana"
                     app:srcCompat="@drawable/vrikshasana" />

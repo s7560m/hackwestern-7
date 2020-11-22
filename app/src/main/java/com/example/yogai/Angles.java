@@ -93,7 +93,7 @@ public class Angles {
         PoseLandmark rightKnee = pose.getPoseLandmark(PoseLandmark.RIGHT_KNEE);
 
         if(rightAnkle != null && rightHip !=null && rightKnee!= null)
-            return getAngle(rightAnkle, rightHip, rightKnee);
+            return getAngle(rightAnkle, rightKnee, rightHip);
         else
             return 0;
     }
@@ -104,7 +104,7 @@ public class Angles {
         PoseLandmark leftKnee = pose.getPoseLandmark(PoseLandmark.LEFT_KNEE);
 
         if(leftAnkle != null && leftHip !=null && leftKnee!= null)
-            return getAngle(leftAnkle, leftHip, leftKnee);
+            return getAngle(leftAnkle, leftKnee, leftHip);
         else
             return 0;
     }

@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageCapture imageCapture;
 
     // Get the pose from onCreate()
-    private String pose;
+    private String poseFromIntent;
 
     // Get the main thread
     ExecutorService thread = Executors.newFixedThreadPool(10);
@@ -88,14 +88,13 @@ public class MainActivity extends AppCompatActivity {
             if (mediaImage != null) {
                 InputImage image = InputImage.fromMediaImage(mediaImage, imageProxy.getImageInfo().getRotationDegrees());
                 PoseClassification poseClassification = new PoseClassification();
-
-
                 poseClassification.getPose(image).addOnSuccessListener(pose -> {
                     List<PoseLandmark> allPoseLandmarks = pose.getAllPoseLandmarks();
 //                    for (PoseLandmark individualPose : allPoseLandmarks) {
 //                        System.out.println(individualPose.getLandmarkType()); }
                     Angles angle = new Angles();
                     System.out.println(angle.leftElbowAngle(pose));
+                    
                     imageProxy.close();
                 }).addOnFailureListener(e -> {
                     System.out.println(e.getMessage() + e.getCause());
@@ -125,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        pose = getIntent().getStringExtra("POSE: ");
+        poseFromIntent = getIntent().getStringExtra("POSE: ");
         // Define the processCameraProvider
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
         // When the camera provider resolves, it will bind the hardware camera to the preview

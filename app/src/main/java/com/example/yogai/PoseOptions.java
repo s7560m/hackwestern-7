@@ -6,10 +6,10 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.yogai.poseClasses.BridgePose;
-import com.example.yogai.poseClasses.CobraPose;
-import com.example.yogai.poseClasses.DownwardDog;
-import com.example.yogai.poseClasses.Triangle;
+import com.example.yogai.poseActivityClasses.BridgePose;
+import com.example.yogai.poseActivityClasses.CobraPose;
+import com.example.yogai.poseActivityClasses.DownwardDog;
+import com.example.yogai.poseActivityClasses.Triangle;
 
 public class PoseOptions extends AppCompatActivity {
     public void bridgePose(View view) {

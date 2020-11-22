@@ -30,6 +30,7 @@ import android.util.Log;
 import android.util.Size;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.yogai.R;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -51,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Get the image capture
     private ImageCapture imageCapture;
+
+    // Get the progress bar
+    private ProgressBar progressBar;
 
     // Get the pose from onCreate()
     private String poseFromIntent;
@@ -94,7 +98,9 @@ public class MainActivity extends AppCompatActivity {
 //                        System.out.println(individualPose.getLandmarkType()); }
                     Angles angle = new Angles();
                     System.out.println(angle.leftElbowAngle(pose));
-                    
+                    if (angle.leftElbowAngle(pose) > 10 && angle.leftElbowAngle(pose) < 20) {
+                        progressBar.incrementProgressBy(2);
+                    }
                     imageProxy.close();
                 }).addOnFailureListener(e -> {
                     System.out.println(e.getMessage() + e.getCause());
@@ -124,7 +130,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        poseFromIntent = getIntent().getStringExtra("POSE: ");
+        poseFromIntent = getIntent().getStringExtra("POSE");
+        progressBar = findViewById(R.id.progressBar);
+        Log.d("POSE: ", poseFromIntent);
         // Define the processCameraProvider
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
         // When the camera provider resolves, it will bind the hardware camera to the preview

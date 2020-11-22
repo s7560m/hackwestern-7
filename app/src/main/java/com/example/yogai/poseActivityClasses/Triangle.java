@@ -1,4 +1,4 @@
-package com.example.yogai.poseClasses;
+package com.example.yogai.poseActivityClasses;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,12 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.yogai.MainActivity;
 import com.example.yogai.R;
 
-public class CobraPose extends AppCompatActivity {
-
+public class Triangle extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cobrapose);
+        setContentView(R.layout.triangle);
     }
 
     public void clickAnywhere(View view) {

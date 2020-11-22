@@ -25,7 +25,7 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     public void clickAnywhere(View view) {
-        Intent intent = new Intent(this, ChoosePose.class);
+        Intent intent = new Intent(this, PoseOptions.class);
         startActivity(intent);
     }
 

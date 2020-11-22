@@ -16,14 +16,21 @@
             android:name=".HomeScreen"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_home_screen"
-            android:theme="@style/FullscreenTheme">
+            android:theme="@style/Theme.Design.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" android:theme="@style/Theme.Design.NoActionBar"></activity>
+        <activity android:name=".PoseOptions" android:theme="@style/Theme.Design.NoActionBar"></activity>
+        <activity android:name=".poseClasses.BridgePose" android:theme="@style/Theme.Design.NoActionBar"></activity>
+        <activity android:name=".poseClasses.CobraPose" android:theme="@style/Theme.Design.NoActionBar"></activity>
+        <activity android:name=".poseClasses.DownwardDog" android:theme="@style/Theme.Design.NoActionBar"></activity>
+        <activity android:name=".poseClasses.Triangle" android:theme="@style/Theme.Design.NoActionBar"></activity>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>

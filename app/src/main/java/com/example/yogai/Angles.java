@@ -109,47 +109,46 @@ public class Angles {
             return 0;
     }
 
-
-    //Elbow-shoulder-hip
-    public double rightShoulderAngle(Pose pose) {
-        PoseLandmark rightElbow = pose.getPoseLandmark(PoseLandmark.RIGHT_ELBOW);
-        PoseLandmark rightShoulder = pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER);
-        PoseLandmark rightHip = pose.getPoseLandmark(PoseLandmark.RIGHT_HIP);
-
-        if(rightElbow!=null && rightShoulder != null & rightHip != null)
-            return getAngle(rightElbow,rightHip, rightShoulder);
-        else return 0;
-    }
-
     public double leftShoulderAngle(Pose pose) {
         PoseLandmark leftElbow = pose.getPoseLandmark(PoseLandmark.LEFT_ELBOW);
         PoseLandmark leftShoulder = pose.getPoseLandmark(PoseLandmark.LEFT_SHOULDER);
         PoseLandmark leftHip = pose.getPoseLandmark(PoseLandmark.LEFT_HIP);
-
-        if(leftElbow!=null && leftShoulder != null & leftHip != null)
-            return getAngle(leftElbow,leftHip, leftShoulder);
-        else return 0;
-    }
-
-    public double rightHipAngle(Pose pose) {
-        PoseLandmark rightHip = pose.getPoseLandmark(PoseLandmark.RIGHT_HIP);
-        PoseLandmark rightShoulder = pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER);
-        PoseLandmark rightKnee = pose.getPoseLandmark(PoseLandmark.RIGHT_KNEE);
-
-        if(rightHip!=null && rightKnee != null && rightShoulder !=null)
-            return getAngle(rightHip, rightKnee, rightShoulder);
-        else
+        if (leftElbow != null && leftShoulder != null && leftHip != null) {
+            return getAngle(leftElbow, leftShoulder, leftHip);
+        } else {
             return 0;
+        }
+    }
+    public double rightShoulderAngle(Pose pose) {
+        PoseLandmark start = pose.getPoseLandmark(PoseLandmark.RIGHT_ELBOW);
+        PoseLandmark mid = pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER);
+        PoseLandmark end = pose.getPoseLandmark(PoseLandmark.RIGHT_HIP);
+        if (start != null && mid != null && end != null) {
+            return getAngle(start, mid, end);
+        } else {
+            return 0;
+        }
+    }
+    public double rightHipAngle(Pose pose) {
+        PoseLandmark start = pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER);
+        PoseLandmark mid = pose.getPoseLandmark(PoseLandmark.RIGHT_HIP);
+        PoseLandmark end = pose.getPoseLandmark(PoseLandmark.RIGHT_ANKLE);
+        if (start != null && mid != null && end != null) {
+            return getAngle(start, mid, end);
+        } else {
+            return 0;
+        }
     }
     public double leftHipAngle(Pose pose) {
-        PoseLandmark rightHip = pose.getPoseLandmark(PoseLandmark.LEFT_HIP);
-        PoseLandmark rightShoulder = pose.getPoseLandmark(PoseLandmark.RIGHT_SHOULDER);
-        PoseLandmark rightKnee = pose.getPoseLandmark(PoseLandmark.RIGHT_KNEE);
-
-        if(rightHip!=null && rightKnee != null && rightShoulder != null)
-            return getAngle(rightKnee,rightShoulder,rightHip);
-        else
+        PoseLandmark start = pose.getPoseLandmark(PoseLandmark.LEFT_SHOULDER);
+        PoseLandmark mid = pose.getPoseLandmark(PoseLandmark.LEFT_HIP);
+        PoseLandmark end = pose.getPoseLandmark(PoseLandmark.LEFT_ANKLE);
+        if (start != null && mid != null && end != null) {
+            return getAngle(start, mid, end);
+        } else {
             return 0;
+        }
     }
+
 
 }

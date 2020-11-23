@@ -19,9 +19,11 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -32,9 +34,12 @@ import android.view.TextureView;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.example.yogai.MLPoses.Triangle;
 import com.example.yogai.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.pose.Pose;
@@ -58,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Get the pose from onCreate()
     private String poseFromIntent;
+
+    // Get floating action button
+    private FloatingActionButton cameraButton;
 
     // Get the main thread
     ExecutorService thread = Executors.newFixedThreadPool(10);
@@ -98,10 +106,44 @@ public class MainActivity extends AppCompatActivity {
 //                        System.out.println(individualPose.getLandmarkType()); }
                     Angles angle = new Angles();
                     System.out.println(angle.leftElbowAngle(pose));
+                    // Test pose
                     if (angle.leftElbowAngle(pose) > 10 && angle.leftElbowAngle(pose) < 20) {
-                        progressBar.incrementProgressBy(2);
+                        progressBar.incrementProgressBy(10);
                     }
-                    imageProxy.close();
+                    Triangle triangle = new Triangle();
+                    if (triangle.isValidPose(pose)) {
+                        progressBar.incrementProgressBy(20);
+                    }
+                    // Let's switch case each pose
+//                    switch(poseFromIntent) {
+//                        case "bridgePose":x`
+//                            break;
+//                        case "cobraPose":
+//                            break;
+//                        case "downwardDog":
+//                            break;
+//                        case "triangle":
+//
+//                            break;
+//                    }
+
+                    // Check if progress bar is 100
+                    // If it is, change icon from camera to checkmark
+                    if (progressBar.getProgress() == progressBar.getMax()) {
+                        // Stop firing image stream
+                        // Prompt that user successfully did it!
+                        new MaterialAlertDialogBuilder(this)
+                                .setTitle("Well done!")
+                                .setMessage("You've successfully done " + poseFromIntent + " correctly!")
+                                .setPositiveButton("Go back.", (dialog, which) -> {
+                                    dialog.dismiss();
+                                    finish();
+                                })
+                                .show();
+                    }
+                    if (progressBar.getProgress() != progressBar.getMax()) {
+                        imageProxy.close();
+                    }
                 }).addOnFailureListener(e -> {
                     System.out.println(e.getMessage() + e.getCause());
                 });
@@ -132,7 +174,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         poseFromIntent = getIntent().getStringExtra("POSE");
         progressBar = findViewById(R.id.progressBar);
+        cameraButton = findViewById(R.id.cameraButton);
         Log.d("POSE: ", poseFromIntent);
+
+        // Set the initial prompt
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("Start posing!")
+                .setMessage("Position your camera so it can show your full body. When you've held that position correctly for a few seconds, you'll receive a checkmark for that pose!")
+                .setPositiveButton("Accept", (dialog, which) -> {
+                    dialog.dismiss();
+                })
+        .show();
         // Define the processCameraProvider
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
         // When the camera provider resolves, it will bind the hardware camera to the preview
@@ -148,5 +200,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }, ContextCompat.getMainExecutor(this));
     }
+
 
 }
